@@ -85,7 +85,21 @@ int main(void)
   #endif
   /*** End of RTOS startup code.  ***/
   /*** Processor Expert end of main routine. DON'T MODIFY THIS CODE!!! ***/
-  for(;;){}
+  for(;;){
+      char   colors;                             // variable for color
+      RGBLED RGBled;                             // structure for led
+
+
+      RGBled.RGB = 0x00;                         // clean outputs
+      while(1) {
+          for(colors = 0x00; colors < 0x08; RGBled.RGB = colors++) {
+              RED_PutVal(RGBled.Bits.r);         // set red
+              GREEN_PutVal(RGBled.Bits.g);         // set green
+              BLUE_PutVal(RGBled.Bits.b);         // set blue
+              for (int i = 0; i < 200000; i++);  // software delay
+          }
+      }
+  }
   /*** Processor Expert end of main routine. DON'T WRITE CODE BELOW!!! ***/
 } /*** End of main routine. DO NOT MODIFY THIS TEXT!!! ***/
 
